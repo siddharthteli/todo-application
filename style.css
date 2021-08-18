@@ -37,3 +37,6 @@ div .add-task {
   padding: 5px;
   border: grey thin solid;
 }
+i:hover {
+  color: rgb(159, 61, 252);
+}
