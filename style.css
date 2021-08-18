@@ -79,6 +79,7 @@ i:hover {
   border: 1px rgb(207, 204, 211) solid;
   width: 90%;
   height: 300px;
+  margin-top: 30px;
 }
 .card-heading {
   font-size: 20px;
