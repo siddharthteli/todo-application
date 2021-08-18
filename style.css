@@ -1,3 +1,6 @@
+* {
+  background: rgb(247, 244, 244);
+}
 .header-container {
   display: flex;
   flex-direction: row;
