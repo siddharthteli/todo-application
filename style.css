@@ -68,6 +68,41 @@ i:hover {
 
 .grid-container {
   display: grid;
-  margin-top: 20px;
+  margin-top: 30px;
   grid-template-columns: repeat(3, calc(100% / 3));
+}
+
+.card-wrapper {
+  display: grid;
+  grid-template-rows: 50px 200px 50px;
+  box-sizing: content-box;
+  border: 1px rgb(207, 204, 211) solid;
+  width: 90%;
+  height: 300px;
+}
+.card-heading {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.task-list {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.task-list ol li {
+  font-size: 15px;
+  font-weight: lighter;
+}
+.grid-container-button {
+  display: grid;
+  grid-template-columns: repeat(2, calc(100% / 2));
+  text-align: center;
+  border-top: 2px black dashed;
+}
+
+.button-border {
+  background-color: rgb(211, 211, 211);
+  border: 1px rgb(198, 199, 199) solid;
+  margin: 10px;
 }
