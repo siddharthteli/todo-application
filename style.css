@@ -112,3 +112,33 @@ i:hover {
   background-color: rgb(159, 61, 252);
   color: blueviolet;
 }
+
+.edit-form-wrapper {
+  text-align: center;
+  width: 300px;
+  height: 50vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px rgb(243, 216, 216) solid;
+  padding: 20px;
+}
+.edit-form-wrapper input {
+  display: block;
+  margin: auto;
+  margin-top: 30px;
+  height: 30px;
+  width: 70%;
+  border: 1px rgb(228, 215, 215) solid;
+}
+
+.edit-form-wrapper button {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 5px;
+  background-color: rgb(26, 177, 71);
+  font-weight: 800;
+  color: aliceblue;
+}
