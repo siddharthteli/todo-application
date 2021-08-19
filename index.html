@@ -73,7 +73,7 @@
                     </ol>
                 </div>
                 <div class="grid-container-button">
-                    <div class="button-border"><i class="fas fa-plus-circle"></i></div>
+                    <div class="button-border" onclick="display_form()"><i class="fas fa-plus-circle"></i></div>
                     <div class="button-border"><i class="fas fa-trash-alt"></i></div>
 
                 </div>
@@ -101,16 +101,17 @@
         <form>
             <h3>Edit Task</h3>
             <input type="text" name="Name" placeholder="Title">
-            <input type="text" name="task-description" placeholder="Description">
+            <textarea cols="4" placeholder="New Task"></textarea>
             <input type="text" name="user" placeholder="Person">
             <button type="submit">Sumbit</button>
             <button type="reset">Reset</button>
         </form>
     </div>
 
-
+    <script src="app.js"></script>
 
 </body>
+
 
 
 </html>

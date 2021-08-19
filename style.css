@@ -114,6 +114,7 @@ i:hover {
 }
 
 .edit-form-wrapper {
+  display: none;
   box-sizing: border-box;
   text-align: center;
   width: 350px;
@@ -125,13 +126,17 @@ i:hover {
   border: 2px rgb(243, 216, 216) solid;
   padding: 20px;
 }
-.edit-form-wrapper input {
+.edit-form-wrapper input,
+textarea {
   display: block;
   margin: auto;
   margin-top: 30px;
   height: 30px;
   width: 70%;
   border: 1px rgb(228, 215, 215) solid;
+}
+.edit-form-wrapper textarea {
+  height: 70px;
 }
 
 .edit-form-wrapper button {
@@ -142,4 +147,5 @@ i:hover {
   background-color: rgb(26, 177, 71);
   font-weight: 800;
   color: aliceblue;
+  border: 1px grey groove;
 }
