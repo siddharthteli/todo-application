@@ -13,3 +13,6 @@ function hide_form(){
     document.getElementById('blur').style.filter=`blur(${0}px)`;
 
 }
+function delete_card(){
+    confirm("Jab delete hi karna tha tho bananya ku bhai?");
+}
