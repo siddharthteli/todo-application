@@ -107,3 +107,8 @@ i:hover {
   border: 1px rgb(198, 199, 199) solid;
   margin: 10px;
 }
+
+.button-border:hover {
+  background-color: rgb(159, 61, 252);
+  color: blueviolet;
+}
