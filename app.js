@@ -7,3 +7,9 @@ function display_form(){
    */
     document.getElementById('blur').style.filter=`blur(${2}px)`;
 }
+
+function hide_form(){
+    document.getElementById("edit-form").style.display="none";
+    document.getElementById('blur').style.filter=`blur(${0}px)`;
+
+}

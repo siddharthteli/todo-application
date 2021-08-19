@@ -149,3 +149,6 @@ textarea {
   color: aliceblue;
   border: 1px grey groove;
 }
+.close-align-left {
+  text-align: right;
+}
