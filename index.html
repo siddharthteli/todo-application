@@ -21,7 +21,7 @@
                 <div class="element-1 flex-space"><a href="#">Past</a></div>
                 <div class="element-1"><a href="#">Help</a></div>
                 <div class="element-1"><a href="#">Feedback</a></div>
-                <div class="element-1"><a class="add-task" href="#">AddTask</a></div>
+                <div class="element-1"><a class="add-task" href="#" onclick="display_add_task_form()">AddTask</a></div>
 
                 <ol>
                 </ol>
@@ -36,12 +36,13 @@
             <div class="grid-container">
                 <div class="card-wrapper">
 
-                    <div class="card-heading">Mondays Task:-</div>
+                    <div class="card-heading">Wake me :-</div>
                     <div class="task-list">
-                        <p>Wake me up at 5o clock</p>
+                        <p>Wake me up at 5o clock on monday.For walking</p>
                     </div>
                     <div class="grid-container-button">
-                        <div class="button-border" onclick="display_form()"><i class="fas fa-plus-circle"></i></div>
+                        <div class="button-border" onclick="display_edit_form()"><i class="fas fa-plus-circle"></i>
+                        </div>
                         <div class="button-border" onclick="delete_card()"><i class="fas fa-trash-alt"></i></div>
 
                     </div>
@@ -53,8 +54,8 @@
 
     <div class="edit-form-wrapper" id="edit-form">
         <form>
-            <div class="close-align-left" onclick=" hide_form()"> <i class="far fa-times-circle  "></i></div>
-            <h3>Edit Task</h3>
+            <div class="close-align-left" onclick=" hide_edit_form()"> <i class="far fa-times-circle  "></i></div>
+            <h3 id="edit-form-title">Edit Task</h3>
             <input type="text" name="Name" placeholder="Title">
             <textarea cols="4" placeholder="New Task"></textarea>
             <input type="text" name="user" placeholder="Person">
@@ -62,6 +63,8 @@
             <button type="reset">Reset</button>
         </form>
     </div>
+
+
 
     <script src="app.js"></script>
 
