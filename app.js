@@ -22,3 +22,12 @@ function display_add_task_form() {
   document.getElementById("edit-form").style.display = "block";
   document.getElementById("blur").style.filter = `blur(${2}px)`;
 }
+
+function add_edit_task() {
+  if (document.getElementById("edit-form-title").innerHTML == "Edit Task") {
+    console.log("First");
+  }
+  if (document.getElementById("edit-form-title").innerHTML == "New Task") {
+    console.log("Second");
+  }
+}
