@@ -76,6 +76,7 @@ i:hover {
 }
 
 .card-wrapper {
+  overflow: hidden;
   display: grid;
   grid-template-rows: 50px 200px 50px;
   box-sizing: content-box;
