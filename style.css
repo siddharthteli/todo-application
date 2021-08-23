@@ -156,3 +156,8 @@ textarea {
 .close-align-left {
   text-align: right;
 }
+
+.grid-layout-serial {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
