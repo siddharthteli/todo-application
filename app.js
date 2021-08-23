@@ -31,3 +31,24 @@ function add_edit_task() {
     console.log("Second");
   }
 }
+
+function get_todo_list() {
+  fetch("http://127.0.0.1:8000/view-all-todo", {
+    "Content-type": "application/json",
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then(function (data) {
+      data.data.forEach((element) => {
+        console.log(element.description);
+        console.log(element.title);
+      });
+    })
+    .catch(function (error) {
+      console.warn("Something went wrong.", error);
+    });
+}
