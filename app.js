@@ -33,12 +33,13 @@ function add_edit_task() {
 }
 //1st try-
 
-function get_todo_list() {
-  const card =
-    '<div class="card-wrapper" id="todo-card-wrapper"><div class="card-heading" id="todo-card-title">Wake me :-</div><div class="task-list"><p id="todo-card-description">Wake me up at 5o clock on monday.For walking</p></div><div class="grid-container-button"><div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i></div><div class="button-border" onclick="delete_card()"><i class="fas fa-trash-alt"></i></div></div></div>';
+function get_todo_list(user) {
+  var value = 0;
+  const card = `<div class="card-wrapper" id="todo-card-wrapper"><div class="card-heading" id="todo-card-title">${value}</div><div class="task-list"><p id="todo-card-description">Wake me up at 5o clock on monday.For walking</p></div><div class="grid-container-button"><div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i></div><div class="button-border" onclick="delete_card()"><i class="fas fa-trash-alt"></i></div></div></div> `;
 
-  for (let i = 0; i < 10; i++) {
+  for (i = 0; i < 10; i++) {
     var container = document.createElement("div");
+    // console.log(card.parentElement.children[1]);
     container.innerHTML = card;
     document.getElementById("grid-card-container").appendChild(container);
   }
