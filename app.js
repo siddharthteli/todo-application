@@ -1,3 +1,4 @@
+//called by edit-task button-
 function display_edit_form() {
   document.getElementById("edit-form").style.display = "block";
 
@@ -13,10 +14,11 @@ function hide_edit_form() {
   document.getElementById("blur").style.filter = `blur(${0}px)`;
   document.getElementById("edit-form-title").innerHTML = "Edit Task";
 }
-function delete_card() {
+function delete_card(count) {
   confirm("Jab delete hi karna tha tho bananya ku bhai?");
+  console.log(count);
 }
-
+//called by addtask button.
 function display_add_task_form() {
   document.getElementById("edit-form-title").innerHTML = "New Task";
   document.getElementById("edit-form").style.display = "block";
@@ -26,9 +28,18 @@ function display_add_task_form() {
 function add_edit_task() {
   if (document.getElementById("edit-form-title").innerHTML == "Edit Task") {
     console.log("First");
+    console.log(document.getElementById("value-title-of-todo").value);
+    console.log(document.getElementById("value-description-of-todo").value);
   }
   if (document.getElementById("edit-form-title").innerHTML == "New Task") {
     console.log("Second");
+    let title = document.getElementById("value-title-of-todo").value;
+    let description = document.getElementById(
+      "value-description-of-todo"
+    ).value;
+    console.log(title);
+    console.log(description);
+    create_new_todo(title, description);
   }
 }
 function get_todo_list() {
@@ -46,12 +57,12 @@ function get_todo_list() {
       data.data.forEach((element) => {
         var map1 = new Map();
         map1.set(count, element._id.$oid);
-        console.log(map1);
-        const card = `<div class="card-wrapper" id="todo-card-wrapper">
+        count++;
+        var card = `<div class="card-wrapper" id="todo-card-wrapper">
          
         <div class="card-heading" id="todo-card-title">
             <div class="grid-layout-serial">
-                <div id="todo-id">${count++}.)</div>
+                <div id="todo-id">${count}.)</div>
                 <div> ${element.title} :- </div>
             </div>
         </div>
@@ -61,7 +72,7 @@ function get_todo_list() {
         <div class="grid-container-button">
             <div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i>
             </div>
-            <div class="button-border" onclick="delete_card()"><i class="fas fa-trash-alt"></i></div>
+            <div class="button-border" id="${count}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
 
         </div>
     </div>`;
@@ -74,28 +85,49 @@ function get_todo_list() {
       console.warn("Something went wrong.", error);
     });
 }
-/*
-function delete_todo_card() {
-  fetch("http://127.0.0.1:8000/view-all-todo", {
-    "Content-type": "application/json",
-    method: "DELETE",
+function create_new_todo(title, description) {
+  fetch("http://127.0.0.1:8000/create-one-todo", {
+    "Content-Type": "application/json",
+    method: "POST",
+    body: JSON.stringify({
+      title: title,
+      description: description,
+    }),
   })
     .then(function (response) {
       if (response.ok) {
-        return response.json();
+        return Promise.response.json();
       }
       return Promise.reject(response);
     })
     .then(function (data) {
-      data.data.forEach((element) => {
-        const card = `<div class="card-wrapper" id="todo-card-wrapper"><div class="card-heading" id="todo-card-title">${element.title}</div><div class="task-list"><p id="todo-card-description">${element.title}</p></div><div class="grid-container-button"><div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i></div><div class="button-border" onclick="delete_card()"><i class="fas fa-trash-alt"></i></div></div></div> `;
-        var container = document.createElement("div");
-        container.innerHTML = card;
-        document.getElementById("grid-card-container").appendChild(container);
-      });
+      console.log("Inside post fetch:----" + data.data.title);
+      console.log(data.data.description);
+      count++;
+      map1.set(count, element._id.$oid);
+      var card = `<div class="card-wrapper" id="todo-card-wrapper">
+         
+        <div class="card-heading" id="todo-card-title">
+            <div class="grid-layout-serial">
+                <div id="todo-id">${count}.)</div>
+                <div> ${title} :- </div>
+            </div>
+        </div>
+        <div class="task-list">
+            <p id="todo-card-description">${description}</p>
+        </div>
+        <div class="grid-container-button">
+            <div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i>
+            </div>
+            <div class="button-border" id="${count++}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
+
+        </div>
+    </div>`;
+      var container = document.createElement("div");
+      container.innerHTML = card;
+      document.getElementById("grid-card-container").appendChild(container);
     })
     .catch(function (error) {
       console.warn("Something went wrong.", error);
     });
 }
-*/
