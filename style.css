@@ -21,7 +21,7 @@
   font-weight: 600;
 
   margin-left: 40px;
-  font-size: 23px;
+  font-size: 20px;
   color: azure;
 }
 .element-1 a {
@@ -114,7 +114,7 @@ i:hover {
 
 .button-border:hover {
   background-color: rgb(159, 61, 252);
-  color: blueviolet;
+  color: rgb(159, 61, 252);
 }
 
 .edit-form-wrapper {
