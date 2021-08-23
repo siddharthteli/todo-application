@@ -44,6 +44,9 @@ function get_todo_list() {
     .then(function (data) {
       var count = 1;
       data.data.forEach((element) => {
+        var map1 = new Map();
+        map1.set(count, element._id.$oid);
+        console.log(map1);
         const card = `<div class="card-wrapper" id="todo-card-wrapper">
          
         <div class="card-heading" id="todo-card-title">
