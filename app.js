@@ -1,4 +1,5 @@
 //called by edit-task button-
+var task_id_to_object_id = new Map();
 function display_edit_form() {
   document.getElementById("edit-form").style.display = "block";
 
@@ -16,7 +17,9 @@ function hide_edit_form() {
 }
 function delete_card(count) {
   confirm("Jab delete hi karna tha tho bananya ku bhai?");
-  console.log(count);
+  console.log("Value of Count:=" + count);
+  console.log(task_id_to_object_id.get(parseInt(count)));
+  delete_todo(task_id_to_object_id.get(parseInt(count)));
 }
 //called by addtask button.
 function display_add_task_form() {
@@ -53,11 +56,16 @@ function get_todo_list() {
       return Promise.reject(response);
     })
     .then(function (data) {
-      var count = 1;
+      var count = 0;
       data.data.forEach((element) => {
-        var map1 = new Map();
-        map1.set(count, element._id.$oid);
         count++;
+        task_id_to_object_id.set(count, element._id.$oid);
+        console.log(
+          "Value of count:" +
+            count +
+            "Value of oid:" +
+            task_id_to_object_id.get(count)
+        );
         var card = `<div class="card-wrapper" id="todo-card-wrapper">
          
         <div class="card-heading" id="todo-card-title">
@@ -104,7 +112,7 @@ function create_new_todo(title, description) {
       console.log("Inside post fetch:----" + data.data.title);
       console.log(data.data.description);
       count++;
-      map1.set(count, element._id.$oid);
+      task_id_to_object_id.set(count, element._id.$oid);
       var card = `<div class="card-wrapper" id="todo-card-wrapper">
          
         <div class="card-heading" id="todo-card-title">
@@ -119,7 +127,7 @@ function create_new_todo(title, description) {
         <div class="grid-container-button">
             <div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i>
             </div>
-            <div class="button-border" id="${count++}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
+            <div class="button-border" id="${count}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
 
         </div>
     </div>`;
@@ -148,6 +156,7 @@ function delete_todo(task_id) {
     .then(function (data) {
       if (data.Success) {
         get_todo_list();
+        console.log("Value of id : task card:-" + task_id);
       }
     })
     .catch(function (error) {
