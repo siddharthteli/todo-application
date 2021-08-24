@@ -131,3 +131,26 @@ function create_new_todo(title, description) {
       console.warn("Something went wrong.", error);
     });
 }
+
+function delete_todo(task_id) {
+  fetch("http://127.0.0.1:8000/delete-one-todo/" + task_id, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "DELETE",
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then(function (data) {
+      if (data.Success) {
+        get_todo_list();
+      }
+    })
+    .catch(function (error) {
+      console.warn("Something went wrong.", error);
+    });
+}
