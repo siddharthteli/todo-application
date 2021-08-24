@@ -1,6 +1,9 @@
 //called by edit-task button-
 var task_id_to_object_id = new Map();
-function display_edit_form() {
+var update_index = 0;
+function display_edit_form(task_id) {
+  update_index = parseInt(task_id);
+  console.log("Value of update_index:------" + update_index);
   document.getElementById("edit-form").style.display = "block";
 
   /*
@@ -33,6 +36,12 @@ function add_edit_task() {
     console.log("First");
     console.log(document.getElementById("value-title-of-todo").value);
     console.log(document.getElementById("value-description-of-todo").value);
+    console.log(task_id_to_object_id.get(update_index));
+    update_todo(
+      document.getElementById("value-title-of-todo").value,
+      document.getElementById("value-description-of-todo").value,
+      task_id_to_object_id.get(update_index)
+    );
   }
   if (document.getElementById("edit-form-title").innerHTML == "New Task") {
     console.log("Second");
@@ -80,7 +89,7 @@ function get_todo_list() {
             <p id="todo-card-description">${element.description}</p>
         </div>
         <div class="grid-container-button">
-            <div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i>
+            <div class="button-border" id=${count} onclick="display_edit_form(this.id)"><i class="fas fa-edit"></i>
             </div>
             <div class="button-border" id="${count}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
 
@@ -130,7 +139,7 @@ function create_new_todo(title, description) {
             <p id="todo-card-description">${description}</p>
         </div>
         <div class="grid-container-button">
-            <div class="button-border" onclick="display_edit_form()"><i class="fas fa-edit"></i>
+            <div class="button-border"  id=${count} onclick="display_edit_form(this.id)"><i class="fas fa-edit"></i>
             </div>
             <div class="button-border" id="${count}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
 
@@ -180,6 +189,41 @@ function delete_todo(task_id) {
 
         get_todo_list();
       }
+    })
+    .catch(function (error) {
+      console.warn("Something went wrong.", error);
+    });
+}
+
+function update_todo(title, description, task_id) {
+  console.log("Inside update_todo");
+  fetch("http://127.0.0.1:8000/update-one-todo", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify({
+      task_id: task_id,
+      title: title,
+      description: description,
+    }),
+  })
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+      return Promise.reject(response);
+    })
+    .then(function (data) {
+      console.log("create-one-todo----->");
+      console.log(data.data[0].title);
+      console.log(data.data[0].description);
+      let parent = document.getElementById("grid-card-container");
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+
+      get_todo_list();
     })
     .catch(function (error) {
       console.warn("Something went wrong.", error);
