@@ -19,7 +19,7 @@ function delete_card(count) {
   confirm("Jab delete hi karna tha tho bananya ku bhai?");
   console.log("Value of Count:=" + count);
   console.log(task_id_to_object_id.get(parseInt(count)));
-  delete_todo(task_id_to_object_id.get(parseInt(count)));
+  delete_todo(count);
 }
 //called by addtask button.
 function display_add_task_form() {
@@ -42,7 +42,7 @@ function add_edit_task() {
     ).value;
     console.log(title);
     console.log(description);
-    create_new_todo(title, description);
+    create_new_todo(String(title), String(description));
   }
 }
 function get_todo_list() {
@@ -57,6 +57,8 @@ function get_todo_list() {
     })
     .then(function (data) {
       var count = 0;
+      task_id_to_object_id.clear();
+      let input = ``;
       data.data.forEach((element) => {
         count++;
         task_id_to_object_id.set(count, element._id.$oid);
@@ -86,6 +88,7 @@ function get_todo_list() {
     </div>`;
         var container = document.createElement("div");
         container.innerHTML = card;
+
         document.getElementById("grid-card-container").appendChild(container);
       });
     })
@@ -94,6 +97,7 @@ function get_todo_list() {
     });
 }
 function create_new_todo(title, description) {
+  console.log("Inside create_new_todo line 100");
   fetch("http://127.0.0.1:8000/create-one-todo", {
     "Content-Type": "application/json",
     method: "POST",
@@ -104,10 +108,11 @@ function create_new_todo(title, description) {
   })
     .then(function (response) {
       if (response.ok) {
-        return Promise.response.json();
+        return response.json();
       }
       return Promise.reject(response);
     })
+
     .then(function (data) {
       console.log("Inside post fetch:----" + data.data.title);
       console.log(data.data.description);
@@ -115,7 +120,7 @@ function create_new_todo(title, description) {
       task_id_to_object_id.set(count, element._id.$oid);
       var card = `<div class="card-wrapper" id="todo-card-wrapper">
          
-        <div class="card-heading" id="todo-card-title">
+        <div class="card-heading" id="todo-card-title-${count}">
             <div class="grid-layout-serial">
                 <div id="todo-id">${count}.)</div>
                 <div> ${title} :- </div>
@@ -141,12 +146,16 @@ function create_new_todo(title, description) {
 }
 
 function delete_todo(task_id) {
-  fetch("http://127.0.0.1:8000/delete-one-todo/" + task_id, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "DELETE",
-  })
+  fetch(
+    "http://127.0.0.1:8000/delete-one-todo/" +
+      task_id_to_object_id.get(parseInt(task_id)),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    }
+  )
     .then(function (response) {
       if (response.ok) {
         return response.json();
@@ -154,9 +163,12 @@ function delete_todo(task_id) {
       return Promise.reject(response);
     })
     .then(function (data) {
+      console.log("Data value :" + data);
       if (data.Success) {
-        get_todo_list();
         console.log("Value of id : task card:-" + task_id);
+        let parent = document.getElementById("grid-card-container");
+        parent.removeChild(parent.childNodes[parseInt(task_id)]);
+        console.log("Child element contents:-" + element);
       }
     })
     .catch(function (error) {
