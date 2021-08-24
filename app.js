@@ -166,9 +166,19 @@ function delete_todo(task_id) {
       console.log("Data value :" + data);
       if (data.Success) {
         console.log("Value of id : task card:-" + task_id);
+        //target card by id
+        //bug -count/task_id not updating.
+        /*
         let parent = document.getElementById("grid-card-container");
         parent.removeChild(parent.childNodes[parseInt(task_id)]);
         console.log("Child element contents:-" + element);
+        */
+        let parent = document.getElementById("grid-card-container");
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+
+        get_todo_list();
       }
     })
     .catch(function (error) {
