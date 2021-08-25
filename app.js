@@ -176,7 +176,7 @@ function add_edit_task() {
     }
     let new_form_bool =
         document.getElementById("edit-form-title").innerHTML == "New Task";
-    //If caller is add new task.
+    //If caller is add new task
     if (new_form_bool) {
         create_new_todo(String(title), String(description));
     }
