@@ -10,6 +10,7 @@ Main Functions-
 
 //GET fetch request.
 function get_todo_list() {
+    //fetch call to our backend GET end point
     fetch("http://127.0.0.1:8000/view-all-todo", {
             "Content-type": "application/json",
         })
@@ -41,6 +42,7 @@ function get_todo_list() {
 
 //POST fetch request.
 function create_new_todo(title, description) {
+    //fetch call to our backend POST end point
     fetch("http://127.0.0.1:8000/create-one-todo", {
             "Content-Type": "application/json",
             method: "POST",
@@ -69,6 +71,7 @@ function create_new_todo(title, description) {
 
 //DELETE fetch request.
 function delete_todo(task_id) {
+    //fetch call to our backend DELETE end point
     fetch(
             "http://127.0.0.1:8000/delete-one-todo/" +
             task_id_to_object_id.get(parseInt(task_id)), {
@@ -126,7 +129,7 @@ function display_add_task_form() {
     document.getElementById("edit-form").style.display = "block";
     document.getElementById("blur").style.filter = `blur(${2}px)`;
 }
-/*2.
+/*3.
 Helper function-
  */
 
@@ -166,18 +169,20 @@ function add_edit_task() {
         document.getElementById("edit-form-title").innerHTML == "Edit Task";
     let description = document.getElementById("value-description-of-todo").value;
     let title = document.getElementById("value-title-of-todo").value;
+    //If caller is edit_form
     if (edit_form_bool) {
         delete_todo(update_index);
         create_new_todo(title, description);
     }
     let new_form_bool =
         document.getElementById("edit-form-title").innerHTML == "New Task";
+    //If caller is add new task.
     if (new_form_bool) {
         create_new_todo(String(title), String(description));
     }
 }
 
-//Bug function -When sending put request by default options request is sent which doesn't accept
+//Buggy function -When sending put request by default options request is sent which doesn't accept
 //any struct as input causing data gaurd failure.
 /*
     function update_todo(title, description, task_id) {
