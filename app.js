@@ -100,10 +100,10 @@ function delete_todo(task_id) {
                 //target card by id
                 //bug -count/task_id not updating.
                 /*
-                let parent = document.getElementById("grid-card-container");
-                parent.removeChild(parent.childNodes[parseInt(task_id)]);
-                console.log("Child element contents:-" + element);
-                */
+                                                                                                let parent = document.getElementById("grid-card-container");
+                                                                                                parent.removeChild(parent.childNodes[parseInt(task_id)]);
+                                                                                                console.log("Child element contents:-" + element);
+                                                                                                */
                 let parent = document.getElementById("grid-card-container");
                 while (parent.firstChild) {
                     parent.removeChild(parent.firstChild);
@@ -147,7 +147,9 @@ function display_add_task_form() {
     document.getElementById("edit-form").style.display = "block";
     document.getElementById("blur").style.filter = `blur(${2}px)`;
 }
-//Helper function-
+/*2.
+Helper function-
+ */
 
 function append_child(card) {
     var container = document.createElement("div");
@@ -182,14 +184,17 @@ function add_edit_task() {
         document.getElementById("edit-form-title").innerHTML == "Edit Task";
     if (edit_form_bool) {
         console.log("First");
-        console.log(document.getElementById("value-title-of-todo").value);
-        console.log(document.getElementById("value-description-of-todo").value);
+        let title = document.getElementById("value-title-of-todo").value;
+        let description = document.getElementById(
+            "value-description-of-todo"
+        ).value;
+        let object_id = task_id_to_object_id.get(update_index);
+        console.log(title);
+        console.log(description);
         console.log(task_id_to_object_id.get(update_index));
-        update_todo(
-            document.getElementById("value-title-of-todo").value,
-            document.getElementById("value-description-of-todo").value,
-            task_id_to_object_id.get(update_index)
-        );
+        console.log("Value of object_id -----------" + object_id);
+        delete_todo(update_index);
+        create_new_todo(title, description);
     }
     let new_form_bool =
         document.getElementById("edit-form-title").innerHTML == "New Task";
@@ -208,40 +213,40 @@ function add_edit_task() {
 //Bug function -When sending put request by default options request is sent which doesn't accept
 //any struct as input causing data gaurd failure.
 /*
-function update_todo(title, description, task_id) {
-  console.log("Inside update_todo");
-  fetch("http://127.0.0.1:8000/update-one-todo", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "PUT",
-    body: JSON.stringify({
-      task_id: task_id,
-      title: title,
-      description: description,
-    }),
-  })
-    .then(function (response) {
-      if (response.ok) {
-        return response.json();
-      }
-      return Promise.reject(response);
-    })
-    .then(function (data) {
-      console.log("create-one-todo----->");
-      console.log(data.data[0].title);
-      console.log(data.data[0].description);
-      let parent = document.getElementById("grid-card-container");
-      while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-      }
+    function update_todo(title, description, task_id) {
+      console.log("Inside update_todo");
+      fetch("http://127.0.0.1:8000/update-one-todo", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+        body: JSON.stringify({
+          task_id: task_id,
+          title: title,
+          description: description,
+        }),
+      })
+        .then(function (response) {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response);
+        })
+        .then(function (data) {
+          console.log("create-one-todo----->");
+          console.log(data.data[0].title);
+          console.log(data.data[0].description);
+          let parent = document.getElementById("grid-card-container");
+          while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+          }
 
-      get_todo_list();
-    })
-    .catch(function (error) {
-      console.warn("Something went wrong.", error);
-    });
-}
+          get_todo_list();
+        })
+        .catch(function (error) {
+          console.warn("Something went wrong.", error);
+        });
+    }
 
 
-*/
+    */
