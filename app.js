@@ -1,15 +1,14 @@
-//called by edit-task button-
+//Map to store task id to object_id relation.
 var task_id_to_object_id = new Map();
+
+//Variable to store index of card to be updated.
 var update_index = 0;
+
+//called by edit-task button-
 function display_edit_form(task_id) {
   update_index = parseInt(task_id);
   console.log("Value of update_index:------" + update_index);
   document.getElementById("edit-form").style.display = "block";
-
-  /*
-    Alternative syntax to blur bg.
-    document.querySelector('.blur').style.filter=`blur(${2}px)`;
-   */
   document.getElementById("blur").style.filter = `blur(${2}px)`;
 }
 
@@ -32,7 +31,9 @@ function display_add_task_form() {
 }
 
 function add_edit_task() {
-  if (document.getElementById("edit-form-title").innerHTML == "Edit Task") {
+  let edit_form_bool =
+    document.getElementById("edit-form-title").innerHTML == "Edit Task";
+  if (edit_form_bool) {
     console.log("First");
     console.log(document.getElementById("value-title-of-todo").value);
     console.log(document.getElementById("value-description-of-todo").value);
@@ -43,7 +44,9 @@ function add_edit_task() {
       task_id_to_object_id.get(update_index)
     );
   }
-  if (document.getElementById("edit-form-title").innerHTML == "New Task") {
+  let new_form_bool =
+    document.getElementById("edit-form-title").innerHTML == "New Task";
+  if (new_form_bool) {
     console.log("Second");
     let title = document.getElementById("value-title-of-todo").value;
     let description = document.getElementById(
@@ -53,6 +56,28 @@ function add_edit_task() {
     console.log(description);
     create_new_todo(String(title), String(description));
   }
+}
+
+function get_todo_card(count, title, description) {
+  var card = `<div class="card-wrapper" id="todo-card-wrapper">
+         
+  <div class="card-heading" id="todo-card-title">
+      <div class="grid-layout-serial">
+          <div id="todo-id">${count}.)</div>
+          <div> ${title} :- </div>
+      </div>
+  </div>
+  <div class="task-list">
+      <p id="todo-card-description">${description}</p>
+  </div>
+  <div class="grid-container-button">
+      <div class="button-border" id=${count} onclick="display_edit_form(this.id)"><i class="fas fa-edit"></i>
+      </div>
+      <div class="button-border" id="${count}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
+
+  </div>
+</div>`;
+  return card;
 }
 function get_todo_list() {
   fetch("http://127.0.0.1:8000/view-all-todo", {
@@ -67,7 +92,6 @@ function get_todo_list() {
     .then(function (data) {
       var count = 0;
       task_id_to_object_id.clear();
-      let input = ``;
       data.data.forEach((element) => {
         count++;
         task_id_to_object_id.set(count, element._id.$oid);
@@ -77,27 +101,9 @@ function get_todo_list() {
             "Value of oid:" +
             task_id_to_object_id.get(count)
         );
-        var card = `<div class="card-wrapper" id="todo-card-wrapper">
-         
-        <div class="card-heading" id="todo-card-title">
-            <div class="grid-layout-serial">
-                <div id="todo-id">${count}.)</div>
-                <div> ${element.title} :- </div>
-            </div>
-        </div>
-        <div class="task-list">
-            <p id="todo-card-description">${element.description}</p>
-        </div>
-        <div class="grid-container-button">
-            <div class="button-border" id=${count} onclick="display_edit_form(this.id)"><i class="fas fa-edit"></i>
-            </div>
-            <div class="button-border" id="${count}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
-
-        </div>
-    </div>`;
+        let card = get_todo_card(count, element.title, element.description);
         var container = document.createElement("div");
         container.innerHTML = card;
-
         document.getElementById("grid-card-container").appendChild(container);
       });
     })
@@ -127,24 +133,7 @@ function create_new_todo(title, description) {
       console.log(data.data.description);
       count++;
       task_id_to_object_id.set(count, element._id.$oid);
-      var card = `<div class="card-wrapper" id="todo-card-wrapper">
-         
-        <div class="card-heading" id="todo-card-title-${count}">
-            <div class="grid-layout-serial">
-                <div id="todo-id">${count}.)</div>
-                <div> ${title} :- </div>
-            </div>
-        </div>
-        <div class="task-list">
-            <p id="todo-card-description">${description}</p>
-        </div>
-        <div class="grid-container-button">
-            <div class="button-border"  id=${count} onclick="display_edit_form(this.id)"><i class="fas fa-edit"></i>
-            </div>
-            <div class="button-border" id="${count}" onclick="delete_card(this.id)"><i class="fas fa-trash-alt"></i></div>
-
-        </div>
-    </div>`;
+      let card = get_todo_card(count, title, description);
       var container = document.createElement("div");
       container.innerHTML = card;
       document.getElementById("grid-card-container").appendChild(container);
