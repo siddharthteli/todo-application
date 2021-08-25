@@ -10,3 +10,8 @@ Simple todo application based on vanilla js.
 * Javascript function & syntax.
 * Fetch api in javascript (GET,POST,DELETE).
 
+# How to use-
+* `git clone https://github.com/siddharthteli/todo-application.git`
+* ` git checkout feature/fetch`
+* Run index.html file.
+
