@@ -28,12 +28,6 @@ function get_todo_list() {
             data.data.forEach((element) => {
                 count++;
                 task_id_to_object_id.set(count, element._id.$oid);
-                console.log(
-                    "Value of count:" +
-                    count +
-                    "Value of oid:" +
-                    task_id_to_object_id.get(count)
-                );
                 //Helper funtions returns card div.
                 let card = get_todo_card(count, element.title, element.description);
                 //Appending child card to parenet grid layout.
@@ -47,7 +41,6 @@ function get_todo_list() {
 
 //POST fetch request.
 function create_new_todo(title, description) {
-    console.log("Inside create_new_todo line 100");
     fetch("http://127.0.0.1:8000/create-one-todo", {
             "Content-Type": "application/json",
             method: "POST",
@@ -64,8 +57,6 @@ function create_new_todo(title, description) {
         })
 
     .then(function(data) {
-            console.log("Inside post fetch:----" + data.data.title);
-            console.log(data.data.description);
             count++;
             task_id_to_object_id.set(count, element._id.$oid);
             let card = get_todo_card(count, title, description);
@@ -94,16 +85,7 @@ function delete_todo(task_id) {
             return Promise.reject(response);
         })
         .then(function(data) {
-            console.log("Data value :" + data);
             if (data.Success) {
-                console.log("Value of id : task card:-" + task_id);
-                //target card by id
-                //bug -count/task_id not updating.
-                /*
-                                                                                                let parent = document.getElementById("grid-card-container");
-                                                                                                parent.removeChild(parent.childNodes[parseInt(task_id)]);
-                                                                                                console.log("Child element contents:-" + element);
-                                                                                                */
                 let parent = document.getElementById("grid-card-container");
                 while (parent.firstChild) {
                     parent.removeChild(parent.firstChild);
@@ -122,7 +104,6 @@ UI function-
 //called by edit-task button to display edit form-
 function display_edit_form(task_id) {
     update_index = parseInt(task_id);
-    console.log("Value of update_index:------" + update_index);
     document.getElementById("edit-form").style.display = "block";
     document.getElementById("blur").style.filter = `blur(${2}px)`;
 }
@@ -137,8 +118,6 @@ function hide_edit_form() {
 //Delete card ,triggered when delete button is clicked on card.
 function delete_card(count) {
     confirm("Jab delete hi karna tha tho bananya ku bhai?");
-    console.log("Value of Count:=" + count);
-    console.log(task_id_to_object_id.get(parseInt(count)));
     delete_todo(count);
 }
 //called by addtask button.
@@ -151,12 +130,14 @@ function display_add_task_form() {
 Helper function-
  */
 
+//append card to grid container
 function append_child(card) {
     var container = document.createElement("div");
     container.innerHTML = card;
     document.getElementById("grid-card-container").appendChild(container);
 }
 
+//returns card div
 function get_todo_card(count, title, description) {
     var card = `<div class="card-wrapper" id="todo-card-wrapper">
          
@@ -178,34 +159,20 @@ function get_todo_card(count, title, description) {
 </div>`;
     return card;
 }
+
 //Called by edit button & new task button.
 function add_edit_task() {
     let edit_form_bool =
         document.getElementById("edit-form-title").innerHTML == "Edit Task";
+    let description = document.getElementById("value-description-of-todo").value;
+    let title = document.getElementById("value-title-of-todo").value;
     if (edit_form_bool) {
-        console.log("First");
-        let title = document.getElementById("value-title-of-todo").value;
-        let description = document.getElementById(
-            "value-description-of-todo"
-        ).value;
-        let object_id = task_id_to_object_id.get(update_index);
-        console.log(title);
-        console.log(description);
-        console.log(task_id_to_object_id.get(update_index));
-        console.log("Value of object_id -----------" + object_id);
         delete_todo(update_index);
         create_new_todo(title, description);
     }
     let new_form_bool =
         document.getElementById("edit-form-title").innerHTML == "New Task";
     if (new_form_bool) {
-        console.log("Second");
-        let title = document.getElementById("value-title-of-todo").value;
-        let description = document.getElementById(
-            "value-description-of-todo"
-        ).value;
-        console.log(title);
-        console.log(description);
         create_new_todo(String(title), String(description));
     }
 }
