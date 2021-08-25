@@ -3,10 +3,10 @@
 
 <head>
     <script src="https://kit.fontawesome.com/2480a3e2a2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
 
@@ -21,42 +21,38 @@
                 <div class="element-1 flex-space"><a href="#">Past</a></div>
                 <div class="element-1"><a href="#">Help</a></div>
                 <div class="element-1"><a href="#">Feedback</a></div>
-                <div class="element-1"><a class="add-task" href="#" onclick="display_add_task_form()">AddTask</a></div>
+                <div class="element-1">
+                    <a class="add-task" href="#" onclick="display_add_task_form()">AddTask</a>
+                </div>
 
-                <ol>
-                </ol>
-
+                <ol></ol>
             </div>
-
         </header>
         <div class="margin-wrapper">
             <div class="heading">Chota Task</div>
-            <div class="message">A place, Where you will add all tasks which you will never complete</div>
-            <div class="sub-title-align">Todo Application-</div>
-            <div class="grid-container" id="grid-card-container">
-
+            <div class="message">
+                A place, Where you will add all tasks which you will never complete
             </div>
+            <div class="sub-title-align">Todo Application-</div>
+            <div class="grid-container" id="grid-card-container"></div>
         </div>
     </div>
 
     <div class="edit-form-wrapper" id="edit-form">
         <form>
-            <div class="close-align-left" onclick=" hide_edit_form()"> <i class="far fa-times-circle  "></i></div>
+            <div class="close-align-left" onclick=" hide_edit_form()">
+                <i class="far fa-times-circle"></i>
+            </div>
             <h3 id="edit-form-title">Edit Task</h3>
-            <input type="text" id="value-title-of-todo" name="Name" placeholder="Title">
+            <input type="text" id="value-title-of-todo" name="Name" placeholder="Title" />
             <textarea cols="4" id="value-description-of-todo" placeholder="New Task"></textarea>
-            <input type="text" name="user" placeholder="Person">
+            <input type="text" name="user" placeholder="Person" />
             <button type="submit" onclick="add_edit_task()">Sumbit</button>
             <button type="reset">Reset</button>
         </form>
     </div>
 
-
-
     <script src="app.js"></script>
-
 </body>
-
-
 
 </html>
