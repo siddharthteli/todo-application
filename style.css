@@ -1,163 +1,179 @@
 * {
-  background: rgb(247, 244, 244);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: rgb(247, 244, 244);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .header-container {
-  max-width: 70vw;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  flex-direction: row;
+    max-width: 70vw;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: row;
 }
 
 .icon {
-  margin-left: 20px;
-  font-size: 30px;
+    margin-left: 20px;
+    font-size: 30px;
 }
 
 .element-1 {
-  font-weight: 600;
+    font-weight: 600;
+    margin-left: 40px;
+    font-size: 20px;
+    color: azure;
+}
 
-  margin-left: 40px;
-  font-size: 20px;
-  color: azure;
-}
 .element-1 a {
-  color: #8b98a9;
-  text-decoration: none;
+    color: #8b98a9;
+    text-decoration: none;
 }
+
 .element-1 a:hover {
-  color: black;
+    color: black;
 }
+
 .flex-space {
-  flex: 2;
+    flex: 2;
 }
+
 div .add-task {
-  color: rgb(255, 64, 146);
-  font-weight: bold;
-  font-size: 18px;
-  box-sizing: border-box;
-  padding: 5px;
-  border: grey thin solid;
+    color: rgb(255, 64, 146);
+    font-weight: bold;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 5px;
+    border: grey thin solid;
 }
+
 i:hover {
-  color: rgb(159, 61, 252);
+    color: rgb(159, 61, 252);
 }
+
 .margin-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70vw;
 }
+
 .heading {
-  font-size: 40px;
-  text-align: center;
-  margin-top: 90px;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 90px;
 }
 
 .message {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
 }
 
 .sub-title-align {
-  margin-top: 70px;
-  text-align: left;
-  font-size: 17px;
-  font-weight: bold;
+    margin-top: 70px;
+    text-align: left;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .grid-container {
-  display: grid;
-  margin-top: 30px;
-  grid-template-columns: repeat(3, calc(100% / 3));
+    display: grid;
+    margin-top: 30px;
+    grid-template-columns: repeat(3, calc(100% / 3));
 }
 
 .card-wrapper {
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: 50px 200px 50px;
-  box-sizing: content-box;
-  border: 1px rgb(207, 204, 211) solid;
-  width: 90%;
-  height: 300px;
-  margin-top: 30px;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 50px 200px 50px;
+    box-sizing: content-box;
+    border: 1px rgb(207, 204, 211) solid;
+    width: 90%;
+    height: 300px;
+    margin-top: 30px;
 }
+
+.card-wrapper:hover {
+    border: 2px rgb(18, 18, 19) solid;
+    width: 91%;
+}
+
 .card-heading {
-  font-size: 20px;
-  text-align: center;
-  margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .task-list {
-  margin-left: 10px;
-  margin-top: 20px;
+    margin-left: 10px;
+    margin-top: 20px;
 }
+
 .task-list p {
-  font-size: 15px;
-  font-weight: lighter;
+    font-size: 15px;
+    font-weight: lighter;
 }
+
 .grid-container-button {
-  display: grid;
-  grid-template-columns: repeat(2, calc(100% / 2));
-  text-align: center;
-  border-top: 2px black dashed;
+    display: grid;
+    grid-template-columns: repeat(2, calc(100% / 2));
+    text-align: center;
+    border-top: 2px black dashed;
 }
 
 .button-border {
-  background-color: rgb(211, 211, 211);
-  border: 1px rgb(198, 199, 199) solid;
-  margin: 10px;
+    background-color: rgb(211, 211, 211);
+    border: 1px rgb(198, 199, 199) solid;
+    margin: 10px;
 }
 
 .button-border:hover {
-  background-color: rgb(159, 61, 252);
-  color: rgb(159, 61, 252);
+    background-color: rgb(159, 61, 252);
+    color: rgb(159, 61, 252);
 }
 
 .edit-form-wrapper {
-  display: none;
-  box-sizing: border-box;
-  text-align: center;
-  width: 350px;
-  height: 60vh;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px rgb(243, 216, 216) solid;
-  padding: 20px;
+    display: none;
+    box-sizing: border-box;
+    text-align: center;
+    width: 350px;
+    height: 60vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px rgb(243, 216, 216) solid;
+    padding: 20px;
 }
+
 .edit-form-wrapper input,
 textarea {
-  display: block;
-  margin: auto;
-  margin-top: 30px;
-  height: 30px;
-  width: 70%;
-  border: 1px rgb(228, 215, 215) solid;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    height: 30px;
+    width: 70%;
+    border: 1px rgb(228, 215, 215) solid;
 }
+
 .edit-form-wrapper textarea {
-  height: 70px;
+    height: 70px;
 }
 
 .edit-form-wrapper button {
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 20px;
-  padding: 5px;
-  background-color: rgb(26, 177, 71);
-  font-weight: 800;
-  color: aliceblue;
-  border: 1px grey groove;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 5px;
+    background-color: rgb(26, 177, 71);
+    font-weight: 800;
+    color: aliceblue;
+    border: 1px grey groove;
 }
+
 .close-align-left {
-  text-align: right;
+    text-align: right;
 }
 
 .grid-layout-serial {
-  display: grid;
-  grid-template-columns: 10% 90%;
+    display: grid;
+    grid-template-columns: 10% 90%;
 }
