@@ -165,6 +165,7 @@ function get_todo_card(count, title, description) {
 
 //Called by edit button & new task button.
 function add_edit_task() {
+    hide_edit_form();
     let edit_form_bool =
         document.getElementById("edit-form-title").innerHTML == "Edit Task";
     let description = document.getElementById("value-description-of-todo").value;
